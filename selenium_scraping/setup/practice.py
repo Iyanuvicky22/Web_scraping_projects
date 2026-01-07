@@ -44,11 +44,6 @@ for match in matches:
           f"{match.find_element(by=By.XPATH, value='./td[3]').text} | "
           f"{match.find_element(by=By.XPATH, value='./td[4]').text} | "
           f"{match.find_element(by=By.XPATH, value='./td[5]').text}")
-# try:
-#     response = driver.page_sourcessss
-#     pass
-# except Exception as e:
-#     print(f"An error occurred: {e}")
 
 
 driver.quit()
