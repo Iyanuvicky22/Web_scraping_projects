@@ -10,7 +10,8 @@ requires-python = ">=3.11"
 dependencies = [
     "bs4 (>=0.0.2,<0.0.3)",
     "requests (>=2.32.5,<3.0.0)",
-    "pandas (>=2.3.3,<3.0.0)"
+    "pandas (>=2.3.3,<3.0.0)",
+    "selenium (>=4.39.0,<5.0.0)"
 ]
 
 
