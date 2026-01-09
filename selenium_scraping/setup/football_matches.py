@@ -2,6 +2,7 @@
 Selenium Web Scraping Practice Script
 Scrapes match rows from Adam Choi's 'All matches' table.
 """
+
 import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -25,9 +26,7 @@ driver.get(website)
 
 # Click "All matches"
 all_matches = wait.until(
-    EC.element_to_be_clickable(
-        (By.XPATH, "//label[@analytics-event='All matches']")
-        )
+    EC.element_to_be_clickable((By.XPATH, "//label[@analytics-event='All matches']"))
 )
 all_matches.click()
 
@@ -58,7 +57,7 @@ football_data = {
     "Date": date,
     "Home Team": home_team,
     "Score": score,
-    "Away Team": away_team
+    "Away Team": away_team,
 }
 
 football_data_df = pd.DataFrame(football_data)
