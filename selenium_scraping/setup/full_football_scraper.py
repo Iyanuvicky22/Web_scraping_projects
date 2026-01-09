@@ -2,6 +2,7 @@
 Selenium Web Scraping Practice Script
 Scrapes match rows from Adam Choi's 'All matches' table.
 """
+
 from pathlib import Path
 import pandas as pd
 from selenium import webdriver
@@ -12,7 +13,7 @@ from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.support import expected_conditions as EC
 
 BASE_DIR = Path(__file__).resolve()
-TARGET_DIR = BASE_DIR.parents[2]/"data_files"
+TARGET_DIR = BASE_DIR.parents[2] / "data_files"
 file_path = TARGET_DIR / "output.csv"
 
 WEBSITE = "https://www.adamchoi.co.uk/overs/detailed"
@@ -26,9 +27,7 @@ driver = webdriver.Chrome(service=service, options=options)
 wait = WebDriverWait(driver, 15)
 driver.get(WEBSITE)
 
-league_select = Select(wait.until(
-    EC.presence_of_element_located((By.ID, "league")))
-    )
+league_select = Select(wait.until(EC.presence_of_element_located((By.ID, "league"))))
 
 league_select.select_by_index(1)
 
@@ -37,9 +36,7 @@ for opt in league_select.options:
 
 # Click "All matches"
 all_matches = wait.until(
-    EC.element_to_be_clickable(
-        (By.XPATH, "//label[@analytics-event='All matches']")
-        )
+    EC.element_to_be_clickable((By.XPATH, "//label[@analytics-event='All matches']"))
 )
 all_matches.click()
 
@@ -73,7 +70,7 @@ football_data = {
     "Date": date,
     "Home Team": home_team,
     "Score": score,
-    "Away Team": away_team
+    "Away Team": away_team,
 }
 
 football_data_df = pd.DataFrame(football_data)
