@@ -132,6 +132,13 @@ Navigate into the relevant project folder before running the script.
 
 ---
 
+```bash
+
+XPath syntax = ('//tag[@AttributeName="Value"]')
+
+```
+
+
 ## 👤 Author
 
 **Victor (Iyanuvicky22)**  
