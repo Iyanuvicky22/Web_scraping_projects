@@ -4,6 +4,7 @@ Author: Arowosegbe Victor
 Date: January 2026
 Github: https://github.com/Iyanuvicky22/Web_scraping_projects
 """
+
 import scrapy
 
 
