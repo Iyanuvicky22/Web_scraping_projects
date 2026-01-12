@@ -5,9 +5,19 @@
 
 
 # useful for handling different item types with a single interface
+import logging
 from itemadapter import ItemAdapter
 
 
 class SpiderStartPipeline:
+
+    def open_spider(self, spider):
+        logging.warning("Spider Open - Pipeline")
+        pass
+
+    def close_spider(self, spider):
+        logging.warning("Spider closed - Pipeline")
+        pass
+
     def process_item(self, item, spider):
         return item
