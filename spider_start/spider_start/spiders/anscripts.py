@@ -18,13 +18,13 @@ class AnscriptsSpider(CrawlSpider):
     name = "anscripts"
     allowed_domains = ["subslikescript.com"]
     start_urls = ["https://subslikescript.com/movies"]
-    user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0',
+    user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0'
     custom_settings = {
         'DOWNLOAD_DELAY': 0.5
     }
 
     def start_requests(self):
-        url = "http://subslikescript.com/movies_letter-X"
+        url = "http://subslikescript.com/movies"
         yield scrapy.Request(url=url, headers={"User-Agent": self.user_agent})
 
     rules = (
