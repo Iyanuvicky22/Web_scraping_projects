@@ -24,7 +24,7 @@ class AnscriptsSpider(CrawlSpider):
     }
 
     def start_requests(self):
-        url = "http://subslikescript.com/movies"
+        url = "https://subslikescript.com/movies_letter-X"
         yield scrapy.Request(url=url, headers={"User-Agent": self.user_agent})
 
     rules = (
@@ -70,14 +70,14 @@ class AnscriptsSpider(CrawlSpider):
         content_parts = article.xpath(
             ".//div[@class='full-script']//text()"
         ).getall()
-        content = " ".join(t.strip() for t in content_parts if t.strip())
+        transcript = " ".join(t.strip() for t in content_parts if t.strip())
 
         yield {
             "title": title.strip() if title else None,
             "plot": plot.strip() if plot else None,
-            "content": content,
+            "transcript": transcript,
             "url": response.url,
-            "user_agent": response.request.headers['User-Agent'].decode(
-                'utf-8'
-                ),
+            # "user_agent": response.request.headers['User-Agent'].decode(
+            #     'utf-8'
+            #     ),
         }
