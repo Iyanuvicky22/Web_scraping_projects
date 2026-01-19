@@ -18,13 +18,13 @@ class AnscriptsSpider(CrawlSpider):
     name = "anscripts"
     allowed_domains = ["subslikescript.com"]
     start_urls = ["https://subslikescript.com/movies"]
-    user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0',
+    user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0'
     custom_settings = {
         'DOWNLOAD_DELAY': 0.5
     }
 
     def start_requests(self):
-        url = "http://subslikescript.com/movies_letter-X"
+        url = "https://subslikescript.com/movies_letter-X"
         yield scrapy.Request(url=url, headers={"User-Agent": self.user_agent})
 
     rules = (
@@ -70,14 +70,14 @@ class AnscriptsSpider(CrawlSpider):
         content_parts = article.xpath(
             ".//div[@class='full-script']//text()"
         ).getall()
-        content = " ".join(t.strip() for t in content_parts if t.strip())
+        transcript = " ".join(t.strip() for t in content_parts if t.strip())
 
         yield {
             "title": title.strip() if title else None,
             "plot": plot.strip() if plot else None,
-            "content": content,
+            "transcript": transcript,
             "url": response.url,
-            "user_agent": response.request.headers['User-Agent'].decode(
-                'utf-8'
-                ),
+            # "user_agent": response.request.headers['User-Agent'].decode(
+            #     'utf-8'
+            #     ),
         }
