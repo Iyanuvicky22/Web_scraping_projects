@@ -209,5 +209,5 @@ Ensure `.env` is included in `.gitignore` and never committed.
 ## Author
 
 **Victor (Iyanuvicky22)**
-Data & Python Engineer – Web Scraping • Data Extraction • Automation
-GitHub: [https://github.com/Iyanuvicky22](https://github.com/Iyanuvicky22)
+* Data & Python Engineer – Web Scraping • Data Extraction • Automation
+* GitHub: [https://github.com/Iyanuvicky22](https://github.com/Iyanuvicky22)
