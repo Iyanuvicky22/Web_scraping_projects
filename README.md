@@ -1,151 +1,213 @@
-# Web Scraping Projects 🕷️📊
+# Web Scraping Projects 🕸️
 
-This repository contains a collection of Python-based web scraping projects focused on extracting structured data and media from real-world websites. The projects demonstrate practical scraping techniques used for data extraction, automation, and downstream analytics.
-
----
-
-## 🔍 What This Repository Covers
-
-The projects in this repository showcase how to:
-
-- Scrape data from static and semi-dynamic websites
-- Navigate complex HTML structures
-- Extract text, links, and images
-- Handle pagination and nested elements
-- Clean and structure scraped data
-- Save outputs in usable formats (CSV, JSON, image folders)
-
-These projects are designed to reflect **real client use cases**, especially for e-commerce and data collection workflows.
+A collection of Python-based web scraping projects covering **static pages, semi-dynamic sites, browser automation**, and **API-driven extraction**. These projects reflect real-world data extraction workflows: collecting structured data, downloading media, handling pagination, and exporting clean outputs for analysis.
 
 ---
 
-## 🛠️ Tools & Technologies
+## What’s Inside
 
-- **Python**
-- **Requests**
-- **BeautifulSoup (bs4)**
-- **lxml / html.parser**
-- **OS & pathlib** (file handling)
-- **CSV / JSON** (data storage)
+This repo demonstrates how to:
 
-Optional (used in some projects):
-- Selenium / Playwright (for JS-heavy pages)
-- Pandas (for data cleaning and analysis)
+* Extract structured data from real websites (tables, listings, detail pages)
+* Work with complex HTML (nested elements, inconsistent markup)
+* Handle pagination, filtering, and multi-page crawling
+* Download images/media and store them cleanly
+* Save outputs to CSV / JSON (and other useful formats)
+* Use browser automation for JS-heavy pages when needed
 
 ---
 
-## 📂 Project Structure
+## Tools & Technologies
 
-```text
-Web_scraping_projects/
-│
-├── project_1/
-│   ├── main.py
-│   ├── scraper.py
-│   └── output.csv
-│
-├── project_2/
-│   ├── scrape_images.py
-│   └── images/
-│
-├── utils/
-│   └── helpers.py
-│
-└── README.md
-```
+* **Python**
+* **Poetry** (dependency & environment management)
+* **Requests**
+* **BeautifulSoup (bs4)**
+* **lxml / html.parser**
+* **CSV / JSON**
+* **pathlib / os** (file handling)
 
-## 🚀 Example Use Cases
+Also used in some projects:
 
-- Product data extraction from e-commerce websites  
-- Bulk image downloading (highest available resolution)  
-- Website content monitoring  
-- Data collection for analytics or machine learning workflows  
-- Automation of repetitive web data extraction tasks  
+* **Scrapy**
+* **Selenium**
+* **Splash**
+* **Pandas**
+* **Jupyter**
 
 ---
 
-## ▶️ How to Run a Project
+## Repository Structure
 
-### 1️⃣ Clone the repository
+* `api_projects/` – API-based extraction (REST/JSON workflows)
+* `bs4_scraping/` – Requests + BeautifulSoup scrapers (static/semi-static sites)
+* `selenium_scraping/` – Browser automation scrapers (JS-heavy sites)
+* `splash_project/` – Scrapy + Splash rendering projects
+* `spider_start/` – Scrapy spiders / crawling foundations
+* `packages_data/` – Experiments using Python scraping/data packages
+* `jupyter_notebooks/` – Prototypes and analysis notebooks
+* `data_files/` – Sample outputs / exports (CSV/JSON/etc.)
+* `resources/` – Notes, helper references, and materials
+
+---
+
+## Using This Repo (Poetry)
+
+### 1. Clone the repository
 
 ```bash
-
 git clone https://github.com/Iyanuvicky22/Web_scraping_projects.git
 cd Web_scraping_projects
-
 ```
 
-### 2️⃣ Create and activate a virtual environment
+### 2. Install Poetry
+
+If Poetry is not installed:
+
 ```bash
-
-python -m venv .venv
-
+pip install poetry
 ```
-#### Mac/Linux
+
+Verify installation:
+
 ```bash
-
-source .venv/bin/activate
-
+poetry --version
 ```
 
-#### Windows
+### 3. Install dependencies
+
 ```bash
-
-.venv\Scripts\activate
-
+poetry install
 ```
 
-### 3️⃣ Install dependencies
+### 4. Activate the virtual environment
+
 ```bash
-
-pip install -r requirements.txt
-
+poetry shell
 ```
 
-### 4️⃣ Run the scraper
+Alternatively, run commands without activating the shell:
+
 ```bash
-
-python main.py
-
+poetry run python --version
 ```
-
-Some projects may use different entry files such as ecom_main.py or movies_main.py.
-Navigate into the relevant project folder before running the script.
-
-
-## ⚠️ Notes & Best Practices
-
-- Always respect a website’s `robots.txt` and terms of service  
-- Add request delays to avoid rate limiting or IP blocking  
-- Use appropriate request headers (e.g., `User-Agent`) to reduce access issues  
-- Prefer official APIs when they are available  
 
 ---
 
-## 📌 Future Improvements
+## Running Projects
 
-- Add Scrapy-based crawlers for large-scale scraping  
-- Integrate Playwright for JavaScript-heavy websites  
-- Centralized logging and error handling  
-- Config-driven scrapers using YAML or JSON  
-- Dockerized scraping environments  
+### Option A – Run scripts from the repo root (recommended)
+
+```bash
+poetry run python bs4_scraping/main.py
+```
+
+```bash
+poetry run python selenium_scraping/main.py
+```
+
+If a folder contains multiple scripts:
+
+```bash
+poetry run python bs4_scraping/movies_main.py
+poetry run python api_projects/example_api_script.py
+```
+
+### Option B – Navigate into a folder and run
+
+```bash
+cd bs4_scraping
+poetry run python main.py
+```
+
+Script entry filenames may vary by folder. Check the directory to confirm the correct file.
 
 ---
 
+## Common Poetry Commands
+
+Update dependencies:
+
 ```bash
-
-XPath syntax = ('//tag[@AttributeName="Value"]')
-
+poetry update
 ```
 
+Add a dependency:
 
-## 👤 Author
+```bash
+poetry add requests
+```
 
-**Victor (Iyanuvicky22)**  
-Data & Python Engineer  
-Specializing in web scraping, data extraction, and automation  
+Add a development dependency:
 
-GitHub: https://github.com/Iyanuvicky22
+```bash
+poetry add --group dev black
+```
 
+View environment details:
 
+```bash
+poetry env info
+```
 
+List installed packages:
+
+```bash
+poetry show
+```
+
+---
+
+## Environment Variables
+
+Some projects (especially API-based ones) require secrets or tokens.
+
+Create a `.env` file in the project root:
+
+```bash
+touch .env
+```
+
+Example:
+
+```env
+API_KEY=your_key_here
+BASE_URL=https://example.com
+```
+
+Load it in your script:
+
+```python
+from dotenv import load_dotenv
+load_dotenv()
+```
+
+Ensure `.env` is included in `.gitignore` and never committed.
+
+---
+
+## Notes & Best Practices
+
+* Always respect **robots.txt** and website **Terms of Service**
+* Use delays and retry logic to avoid rate limits or IP bans
+* Set request headers (e.g., `User-Agent`) for stability
+* Prefer official APIs when available
+* Avoid collecting personal data without a lawful basis or consent
+
+---
+
+## Roadmap
+
+* Additional Scrapy crawlers for large-scale extraction
+* Playwright support for modern JS-heavy websites
+* Centralized logging and standardized error handling
+* Config-driven scrapers (YAML/JSON)
+* Dockerized scraping environments
+
+---
+
+## Author
+
+**Victor (Iyanuvicky22)**
+Data & Python Engineer – Web Scraping • Data Extraction • Automation
+GitHub: [https://github.com/Iyanuvicky22](https://github.com/Iyanuvicky22)
