@@ -77,7 +77,4 @@ class AnscriptsSpider(CrawlSpider):
             "plot": plot.strip() if plot else None,
             "transcript": transcript,
             "url": response.url,
-            # "user_agent": response.request.headers['User-Agent'].decode(
-            #     'utf-8'
-            #     ),
         }
