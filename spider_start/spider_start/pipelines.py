@@ -26,13 +26,28 @@ class MongoDBPipeline:
     collection_name = "anscripts"
 
     def open_spider(self, spider):
+        """
+        Initializes MongoDB database connection:
+        """
         self.client = pymongo.MongoClient(MONGO_DB_URL)
         self.db = self.client["my_database"]
 
     def close_spider(self, spider):
+        """
+        Closes MongoDB database connection.
+        """
         self.client.close()
 
     def process_item(self, item, spider):
+        """_summary_
+
+        Args:
+            item (_type_): _description_
+            spider (_type_): _description_
+
+        Returns:
+            _type_: _description_
+        """
         self.db[self.collection_name].insert_one(item)
         return item
 
@@ -65,7 +80,7 @@ class SQLitePipeline:
             self.connection.commit()
         except sqlite3.OperationalError:
             pass
-        
+
     def close_spider(self, spider):
         """
         Closes SQLite database connection.
